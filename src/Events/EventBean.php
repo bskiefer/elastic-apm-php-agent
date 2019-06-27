@@ -200,8 +200,8 @@ class EventBean
                     'full' => $http_or_https . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']
                 ],
                 'headers' => [
-                    'user-agent' => $headers['User-Agent'] ?: '',
-                    'cookie'     => $headers['Cookie'] ?: ''
+                    'user-agent' => getDefault($headers, 'User-Agent', ''),
+                    'cookie' => getDefault($headers, 'Cookie', '')
                 ],
                 'env' => $_SERVER,
             ]

@@ -1,6 +1,6 @@
 # Elastic APM: PHP Agent
 
-[![Build Status](https://travis-ci.org/philkra/elastic-apm-php-agent.svg?branch=master)](https://travis-ci.org/philkra/elastic-apm-php-agent)
+[![Build Status](https://travis-ci.org/bskiefer/elastic-apm-php-agent.svg?branch=master)](https://travis-ci.org/bskiefer/elastic-apm-php-agent)
 
 This is a PHP agent for Elastic.co's APM product: https://www.elastic.co/solutions/apm.
 
@@ -12,7 +12,7 @@ The recommended way to install the agent is through [Composer](http://getcompose
 Run the following composer command
 
 ```bash
-php composer.phar require philkra/elastic-apm-php-agent
+php composer.phar require bskiefer/elastic-apm-php-agent
 ```
 
 After installing, you need to require Composer's autoloader:

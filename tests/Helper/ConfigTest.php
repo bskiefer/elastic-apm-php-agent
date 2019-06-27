@@ -32,12 +32,14 @@ final class ConfigTest extends TestCase {
     $this->assertArrayHasKey( 'apmVersion', $config );
     $this->assertArrayHasKey( 'appVersion', $config );
     $this->assertArrayHasKey( 'backtraceDepth', $config );
+    $this->assertArrayHasKey( 'environment', $config );
 
     $this->assertEquals( $config['appName'], $appName );
     $this->assertNull( $config['secretToken'] );
     $this->assertEquals( $config['serverUrl'], 'http://127.0.0.1:8200' );
     $this->assertEquals( $config['hostname'], gethostname() );
     $this->assertTrue( $config['active'] );
+    $this->assertEquals( $config['environment'], 'development' );
     $this->assertEquals( $config['timeout'], 5 );
     $this->assertEquals( $config['apmVersion'], 'v1' );
     $this->assertEquals( $config['backtraceDepth'], 25 );

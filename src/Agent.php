@@ -88,9 +88,9 @@ class Agent
         $this->config = new Config($config);
 
         // Init the Shared Context
-        $this->sharedContext['user']   = $sharedContext['user'] ?: [];
-        $this->sharedContext['custom'] = $sharedContext['custom'] ?: [];
-        $this->sharedContext['tags']   = $sharedContext['tags'] ?: [];
+        $this->sharedContext['user'] = getDefault($sharedContext, 'user');
+        $this->sharedContext['custom'] = getDefault($sharedContext, 'custom');
+        $this->sharedContext['tags'] = getDefault($sharedContext, 'tags');
 
         // Initialize Event Stores
         $this->transactionsStore = new TransactionsStore();

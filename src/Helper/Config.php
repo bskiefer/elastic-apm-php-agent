@@ -40,7 +40,7 @@ class Config
      */
     public function get($key)
     {
-        return ($this->config[$key]) ?: null;
+        return getDefault($this->config, $key, null);
     }
 
     /**
@@ -68,6 +68,7 @@ class Config
             'hostname'       => gethostname(),
             'timeout'        => 5,
             'apmVersion'     => 'v1',
+            'environment'    => 'development',
             'backtraceDepth' => 25,
         ];
     }
