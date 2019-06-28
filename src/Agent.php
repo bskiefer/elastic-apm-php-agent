@@ -166,9 +166,9 @@ class Agent
      *
      * @return void
      */
-    public function captureThrowable($thrown, $line = 0)
+    public function captureThrowable($thrown, $line = 0, $path = null)
     {
-        $this->errorsStore->register(new Error($thrown, $this->sharedContext, $line));
+        $this->errorsStore->register(new Error($thrown, $this->sharedContext, $line, $path));
     }
 
     /**

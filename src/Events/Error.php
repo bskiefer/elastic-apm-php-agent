@@ -21,16 +21,18 @@ class Error extends EventBean implements \JsonSerializable
     private $throwable;
 
     private $line;
+    private $file;
 
     /**
      * @param Throwable $throwable
      * @param array $contexts
      */
-    public function __construct($throwable, array $contexts, $line)
+    public function __construct($throwable, array $contexts, $line, $file)
     {
         parent::__construct($contexts);
         $this->throwable = $throwable;
         $this->line = $line;
+        $this->file = $file;
     }
 
     /**
@@ -41,12 +43,13 @@ class Error extends EventBean implements \JsonSerializable
     public function jsonSerialize()
     {
         $lineNumber = ($this->line > 0) ? $this->line : $this->throwable->getLine();
+        $filePath = ($this->file > 0) ? $this->file : $this->throwable->getFile();
 
         return [
             'id'        => $this->getId(),
             'timestamp' => $this->getTimestamp(),
             'context'   => $this->getContext(),
-            'culprit'   => sprintf('%s:%d', $this->throwable->getFile(), $lineNumber),
+            'culprit'   => sprintf('%s:%d', $filePath, $lineNumber),
             'exception' => [
                 'message'    => $this->throwable->getMessage(),
                 'type'       => get_class($this->throwable),
