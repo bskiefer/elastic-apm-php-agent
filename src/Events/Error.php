@@ -43,7 +43,7 @@ class Error extends EventBean implements \JsonSerializable
     public function jsonSerialize()
     {
         $lineNumber = ($this->line > 0) ? $this->line : $this->throwable->getLine();
-        $filePath = ($this->file > 0) ? $this->file : $this->throwable->getFile();
+        $filePath = (isset($this->file)) ? $this->file : $this->throwable->getFile();
 
         return [
             'id'        => $this->getId(),
