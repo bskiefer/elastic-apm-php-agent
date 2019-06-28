@@ -27,7 +27,7 @@ class Error extends EventBean implements \JsonSerializable
      * @param Throwable $throwable
      * @param array $contexts
      */
-    public function __construct($throwable, array $contexts, $line, $file)
+    public function __construct($throwable, array $contexts, $line = 0, $file = null)
     {
         parent::__construct($contexts);
         $this->throwable = $throwable;
