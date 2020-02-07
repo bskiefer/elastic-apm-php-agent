@@ -182,22 +182,24 @@ class EventBean
         }
 
         // Build Context Stub
-        $context         = [
+        $context = [
             'request' => [
                 'http_version' => $http_version,
-                'method'       => $_SERVER['REQUEST_METHOD'] ?: 'cli',
+                'method'       => isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'cli',
                 'socket'       => [
-                    'remote_address' => $_SERVER['REMOTE_ADDR'] ?: '',
+                    'remote_address' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '',
                     'encrypted'      => isset($_SERVER['HTTPS'])
                 ],
                 'response' => $this->contexts['response'],
                 'url'          => [
                     'protocol' => $http_or_https,
-                    'hostname' => $_SERVER['SERVER_NAME'] ?: '',
-                    'port'     => $_SERVER['SERVER_PORT'] ?: '',
-                    'pathname' => $_SERVER['SCRIPT_NAME'] ?: '',
-                    'search'   => '?' . (($_SERVER['QUERY_STRING'] ?: '') ?: ''),
-                    'full' => $http_or_https . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']
+                    'hostname' => isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '',
+                    'port' => isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : '',
+                    'pathname' => isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '',
+                    'search'   => '?' . (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : ''),
+                    'full' => $http_or_https . '://' .
+                        (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') .
+                        (isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : ''),
                 ],
                 'headers' => [
                     'user-agent' => getDefault($headers, 'User-Agent', ''),
